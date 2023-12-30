@@ -18,7 +18,7 @@ function App() {
     const fetchStockData = async () => {
       try {
         const response = await axios.get(
-          'https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,googl,msft&types=quote&token=pk_58b64c13e456411d9558633db43b7400'
+          'https://cloud.iexapis.com/stable/stock/market/list/mostactive?token=pk_58b64c13e456411d9558633db43b7400'
         );
 
         const stocks = Object.values(response.data).map((stock) => stock.quote);

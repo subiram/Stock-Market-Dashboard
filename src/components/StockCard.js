@@ -1,16 +1,46 @@
 // src/components/StockCard.js
-import React, { useState } from 'react';
-import './Stock.css'; // Import the stock.css file
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Card.css';
 
-const StockCard = ({ stocks }) => {
+const StockCard = () => {
+  const [stocks, setStocks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
 
-  const filteredStocks = stocks.filter((stock) =>
-    stock.symbol.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchStockData = async () => {
+      try {
+        const response = await axios.get(
+          'https://cloud.iexapis.com/stable/stock/market/list/mostactive?token=pk_58b64c13e456411d9558633db43b7400'
+        );
+
+        const stocksData = response.data;
+        console.log('Fetched stocks:', stocksData);
+
+        // Assuming that the data structure is an array directly
+        setStocks(stocksData);
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
+      }
+    };
+
+    fetchStockData();
+  }, []);
 
   const sortStocks = () => {
+    let filteredStocks = [...stocks];
+
+    // Apply search term filter
+    if (searchTerm) {
+      filteredStocks = filteredStocks.filter(
+        (stock) =>
+          stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          stock.companyName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Apply sort
     if (sortBy === 'symbol') {
       return filteredStocks.sort((a, b) => a.symbol.localeCompare(b.symbol));
     } else if (sortBy === 'latestPrice') {

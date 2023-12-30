@@ -1,10 +1,29 @@
 // src/components/StockTable.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Stock.css'; // Import the stock.css file
+import axios from 'axios';
 
-const StockTable = ({ stocks }) => {
+const StockTable = () => {
+  const [stocks, setStocks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
+
+  useEffect(() => {
+    const fetchStockData = async () => {
+      try {
+        const response = await axios.get(
+          'https://cloud.iexapis.com/stable/stock/market/list/mostactive?token=pk_58b64c13e456411d9558633db43b7400'
+        );
+
+        const stockData = response.data;
+        setStocks(stockData);
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
+      }
+    };
+
+    fetchStockData();
+  }, []);
 
   const filteredStocks = stocks.filter((stock) =>
     stock.symbol.toLowerCase().includes(searchTerm.toLowerCase())

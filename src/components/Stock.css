@@ -50,42 +50,6 @@ body {
   color: #fff;
 }
 
-/* Card View */
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 200px;
-}
-
-.stock-card {
-  width: 200px;
-  margin: 10px;
-  padding: 15px;
-  background-color: #ffffff75;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  transition: transform 0.3s;
-  justify-content: center;
-}
-
-.stock-card:hover {
-  transform: scale(1.05);
-}
-
-.stock-card h3 {
-  color: #1b0554;
-}
-
-.stock-card p {
-  margin: 10px 0;
-}
-@media screen and (max-width: 768px) {
-  .stock-card {
-    width: 80%;
-  }
-}
-
 .center-content {
   display: flex;
   flex-direction: column;
@@ -105,9 +69,9 @@ body {
 
 .stock-controls {
   display: flex;
-  justify-content: center; /* Center the controls */
-  flex-wrap: wrap; /* Allow controls to wrap if needed */
-  gap: 10px; /* Adjust the gap between controls */
+  justify-content: center; 
+  flex-wrap: wrap; 
+  gap: 10px; 
   margin-bottom: 10px;
   margin-top: 100px;
 }
@@ -121,7 +85,6 @@ body {
   width: 150px;
 }
 
-/* Additional styles for Search and Sort controls */
 .stock-controls label {
   font-weight: bold;
 }
