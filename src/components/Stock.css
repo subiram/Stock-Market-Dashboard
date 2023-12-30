@@ -54,7 +54,7 @@ body {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 200px;
 }
 
@@ -66,6 +66,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   transition: transform 0.3s;
+  justify-content: center;
 }
 
 .stock-card:hover {
@@ -90,6 +91,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -99,4 +101,33 @@ body {
   color: #101315;
   text-decoration: none;
   font-weight: bold;
+}
+
+.stock-controls {
+  display: flex;
+  justify-content: center; /* Center the controls */
+  flex-wrap: wrap; /* Allow controls to wrap if needed */
+  gap: 10px; /* Adjust the gap between controls */
+  margin-bottom: 10px;
+  margin-top: 100px;
+}
+
+.stock-search {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.stock-sort {
+  width: 150px;
+}
+
+/* Additional styles for Search and Sort controls */
+.stock-controls label {
+  font-weight: bold;
+}
+
+.stock-controls select,
+.stock-controls input {
+  padding: 5px;
+  width: 100%;
 }
