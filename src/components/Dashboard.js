@@ -1,18 +1,19 @@
-// src/components/Dashboard.js
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Dashboard.css'; // Import the CSS file
+import StockTable from './StockTable';
+import StockCard from './StockCard';
+import './Dashboard.css';
 
 const Dashboard = ({ user, onLogout }) => {
-  const navigate = useNavigate();
   const [stockData, setStockData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStockData = async () => {
       try {
         const response = await axios.get(
-          'https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,googl,msft&types=quote&token=pk_e9cdab82f3c34f0cb1ea4736e696e7d0'
+          'https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,googl,msft&types=quote&token=pk_58b64c13e456411d9558633db43b7400'
         );
 
         const stocks = Object.values(response.data).map((stock) => stock.quote);
@@ -26,21 +27,18 @@ const Dashboard = ({ user, onLogout }) => {
   }, []);
 
   return (
-    <div className="page-container dashboard-container">
-      <h2 className="dashboard-header">Welcome, {user.username}!</h2>
-      <button className="dashboard-logout-button" onClick={onLogout}>
-        Logout
-      </button>
+    <div className="dashboard-container">
+      <h2 align='center' className="dashboard-header">Welcome, {user.username} !</h2>
+      <br/> 
+      <br/>
+      <nav className="dashboard-navigation">
+        <Link to="./table">Table View</Link>
+        <Link to="./cards">Card View</Link>
+      </nav>
 
-      <h3>Stocks</h3>
-      <ul className="dashboard-stock-list">
-        {/* Render stock data here */}
-        {stockData.map((stock) => (
-          <li key={stock.symbol} className="dashboard-stock-item">
-            <strong>{stock.symbol}:</strong> {stock.latestPrice}
-          </li>
-        ))}
-      </ul>
+      <div className="dashboard-content">
+        <Outlet />
+      </div>
     </div>
   );
 };

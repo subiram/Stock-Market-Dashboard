@@ -1,7 +1,6 @@
-// src/components/Registration.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Registration.css'; // Import the CSS file
+import './Registration.css';
 
 const Registration = () => {
   const [username, setUsername] = useState('');
@@ -10,7 +9,6 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Dummy registration logic (for demonstration)
     alert(`Registration successful for ${username}`);
     navigate('/login');
   };

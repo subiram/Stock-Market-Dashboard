@@ -1,7 +1,6 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css'; // Import the CSS file
+import './Login.css'; 
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -10,8 +9,7 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Dummy authentication logic (for demonstration)
-    if (username === 'demo' && password === 'password') {
+    if (username === 'subi' && password === 'mypassword') {
       const userData = { username };
       onLogin(userData);
       navigate('/dashboard');
